@@ -1,6 +1,6 @@
 ![Quasar Framework logo](https://cdn.rawgit.com/quasarframework/quasar-art/863c14bd/dist/svg/quasar-logo-full-inline.svg)
 
-# Quasar Framework Default App Template
+# Quasar Framework Expediente
 > Default Starter Kit for a Quasar Framework Project. Compatible with Quasar v0.9-v0.14
 
 > **DEPRECATED FOR v0.15+**
