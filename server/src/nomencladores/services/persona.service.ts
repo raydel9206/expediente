@@ -8,11 +8,7 @@ import { FindPaginationDto } from '../dto/find-pagination.dto';
 
 @Injectable()
 export class PersonaService {
-  constructor(
-    private personaRepository: PersonaRepository,
-    private areaSaludRepository: AreaSaludRepository,
-    private consejoRepository: ConsejoRepository,
-  ) {}
+  constructor(private personaRepository: PersonaRepository) {}
 
   async findAll(findPaginationDto: FindPaginationDto) {
     const { combo, keyword, take, skip } = findPaginationDto;

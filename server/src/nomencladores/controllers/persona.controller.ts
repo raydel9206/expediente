@@ -26,8 +26,8 @@ export class PersonaController {
   }
 
   @Get('antecedentes')
-  getContactos(@Query() query) {
-    return this.personaService.getAntecedentes(query.expediente_id);
+  getAntecedentes(@Query() query) {
+    return this.personaService.getAntecedentes(query.persona_id);
   }
 
   @Post()

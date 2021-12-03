@@ -13,7 +13,7 @@ import { AreaSalud } from './areaSalud.entity';
 import { Consejo } from './consejo.entity';
 
 import { Pais } from './pais.entity';
-@Entity()
+@Entity({ schema: 'nomencladores'})
 export class Persona extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -27,9 +27,9 @@ export class Persona extends BaseEntity {
   direccion: string | null;
   @Column()
   edad: number;
-  @Column()
+  @Column({ nullable: true })
   sexo: string;
-  @Column()
+  @Column({ nullable: true })
   color_piel: string;
   @Column({ nullable: true })
   telefono: string | null;

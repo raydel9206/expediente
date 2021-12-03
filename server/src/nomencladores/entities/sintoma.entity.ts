@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity({ schema: 'nomencladores'})
 export class Sintoma extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

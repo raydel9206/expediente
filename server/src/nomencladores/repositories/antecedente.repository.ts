@@ -26,7 +26,7 @@ export class AntecedenteRepository extends Repository<Antecedente> {
       ])
       .orderBy('antecedente.nombre')
       .where('antecedente.visible = true')
-      .andWhere('lower(antecedente.descripcion) like :filter', {
+      .andWhere('lower(antecedente.nombre) like :filter', {
         filter: `%${filter.toLowerCase()}%`,
       });
     return {

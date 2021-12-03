@@ -7,7 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Evento } from './evento.entity';
-@Entity()
+@Entity({ schema: 'datos' })
 export class Medida extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

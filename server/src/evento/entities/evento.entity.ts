@@ -12,7 +12,7 @@ import { AreaSalud } from '../../nomencladores/entities/areaSalud.entity';
 import { Consejo } from '../../nomencladores/entities/consejo.entity';
 import { Pais } from '../../nomencladores/entities/pais.entity';
 import { Persona } from '../../nomencladores/entities/persona.entity';
-@Entity()
+@Entity({ schema: 'datos'})
 export class Evento extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -27,7 +27,7 @@ export class Evento extends BaseEntity {
   fecha_activacion: Date;
   @UpdateDateColumn({ type: 'timestamptz' })
   @Column()
-  fecha_estimiada_cierre: Date;
+  fecha_estimada_cierre: Date;
   @UpdateDateColumn({ type: 'timestamptz' })
   @Column()
   fecha_ultimo_caso: Date;

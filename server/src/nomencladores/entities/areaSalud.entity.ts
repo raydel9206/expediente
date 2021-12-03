@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Policlinico } from './policlinico.entity';
-@Entity()
+@Entity({ schema: 'nomencladores'})
 export class AreaSalud extends BaseEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()

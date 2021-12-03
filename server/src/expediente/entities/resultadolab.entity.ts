@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { Seguimiento } from './seguimiento.entity';
 
-@Entity()
+@Entity({ schema: 'datos'})
 export class ResultadoLab extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

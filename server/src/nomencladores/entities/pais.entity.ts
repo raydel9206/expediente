@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-@Entity()
+@Entity({ schema: 'nomencladores'})
 export class Pais extends BaseEntity {  
   @PrimaryGeneratedColumn()
   id: number;

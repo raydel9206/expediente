@@ -73,7 +73,7 @@ export class EventoService {
     entity.modalidad = modalidad;
     entity.cerrado = cerrado;
     entity.fecha_activacion = new Date(fecha_activacion);
-    entity.fecha_estimiada_cierre = new Date(fecha_estimiada_cierre);
+    entity.fecha_estimada_cierre = new Date(fecha_estimiada_cierre);
     entity.fecha_ultimo_caso = new Date(fecha_ultimo_caso);
     entity.fecha_cierre = new Date(fecha_cierre);
     entity.tipo_brote = tipo_brote;
@@ -139,7 +139,7 @@ export class EventoService {
     entity.modalidad = modalidad;
     entity.cerrado = cerrado;
     entity.fecha_activacion = new Date(fecha_activacion);
-    entity.fecha_estimiada_cierre = new Date(fecha_estimiada_cierre);
+    entity.fecha_estimada_cierre = new Date(fecha_estimiada_cierre);
     entity.fecha_ultimo_caso = new Date(fecha_ultimo_caso);
     entity.fecha_cierre = new Date(fecha_cierre);
     entity.tipo_brote = tipo_brote;

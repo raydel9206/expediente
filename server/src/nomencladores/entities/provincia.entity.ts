@@ -1,5 +1,5 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-@Entity()
+@Entity({ schema: 'nomencladores'})
 export class Provincia extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

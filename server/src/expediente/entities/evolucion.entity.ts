@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { Expediente } from './expediente.entity';
 
-@Entity()
+@Entity({ schema: 'datos'})
 export class Evolucion extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

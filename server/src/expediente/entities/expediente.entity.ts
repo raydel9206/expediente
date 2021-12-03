@@ -1,3 +1,8 @@
+import { FactorRiesgo } from 'src/nomencladores/entities/factorriesgo.entity';
+import { FuenteInfeccion } from 'src/nomencladores/entities/fuenteinfeccion.entity';
+import { ImpresionDiagnostica } from 'src/nomencladores/entities/impresiondiagnostica.entity';
+import { MetodoHallazgo } from 'src/nomencladores/entities/metodohallazgo.entity';
+import { TipoCaso } from 'src/nomencladores/entities/tipocaso.entity';
 import {
   BaseEntity,
   Column,
@@ -11,7 +16,7 @@ import { Pais } from '../../nomencladores/entities/pais.entity';
 
 import { Persona } from '../../nomencladores/entities/persona.entity';
 import { Sintoma } from '../../nomencladores/entities/sintoma.entity';
-@Entity()
+@Entity({ schema: 'datos' })
 export class Expediente extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -30,7 +35,7 @@ export class Expediente extends BaseEntity {
   @Column()
   centro_remite: string;
   @Column({ default: false })
-  isContacto: boolean;
+  iscontacto: boolean;
   @Column({ nullable: true })
   lugar_contacto: string | null;
   @Column({ nullable: true })
@@ -39,7 +44,6 @@ export class Expediente extends BaseEntity {
   fecha_contacto: Date | null;
   @Column({ nullable: true })
   otros_sintomas: string | null;
-  // @ApiProperty({ enum: ['Admin', 'Moderator', 'User'] })
   @Column()
   estado: number;
   @Column({ default: true })
@@ -57,4 +61,23 @@ export class Expediente extends BaseEntity {
   @ManyToMany(() => Sintoma)
   @JoinTable()
   sintomas: Sintoma[];
+
+  @ManyToOne(() => FuenteInfeccion)
+  fuente_infeccion: FuenteInfeccion;
+
+  @ManyToOne(() => TipoCaso)
+  tipo_caso: TipoCaso;
+
+  @ManyToOne(() => MetodoHallazgo)
+  metodo_hallazgo: MetodoHallazgo;
+
+  @ManyToOne(() => FactorRiesgo)
+  factor_riesgo: FactorRiesgo;
+
+  @ManyToOne(() => ImpresionDiagnostica)
+  impresion_diagnostica: ImpresionDiagnostica;  
+
+  public addContacto(persona: Persona) {
+    this.contactos.push(persona);
+  }
 }

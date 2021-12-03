@@ -6,7 +6,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-@Entity()
+@Entity({ schema: 'nomencladores'})
 export class Policlinico extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

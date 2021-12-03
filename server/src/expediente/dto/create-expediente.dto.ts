@@ -23,7 +23,7 @@ export class CreateExpedienteDto {
   tipo_centro_remite: string;
   centro_remite: string;
   @IsNotEmpty()
-  isContacto: string;
+  iscontacto: string;
   lugar_contacto: string;
   tipo_contacto: string;
   contacto_id: string;
@@ -32,11 +32,21 @@ export class CreateExpedienteDto {
   otros_sintomas: string;
   @IsNotEmpty()
   pais_id: string;
+  procede_id: string;
   @IsNotEmpty()
   cmf_id: string;
   @IsNotEmpty()
   consejo_id: string;
-  contactos: [];
+  @IsNotEmpty()
+  fuente_infeccion_id: string;
+  @IsNotEmpty()
+  tipo_caso_id: string;
+  @IsNotEmpty()
+  metodo_hallazgo_id: string;
+  @IsNotEmpty()
+  factor_riesgo_id: string;
+  @IsNotEmpty()
+  impresion_diagnostica_id: string;
   antecedentes: [];
   sintomas: [];
 }

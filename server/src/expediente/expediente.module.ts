@@ -21,6 +21,7 @@ import { HospitalRepository } from 'src/nomencladores/repositories/hospital.repo
 import { AreaSaludRepository } from 'src/nomencladores/repositories/areaSalud.repository';
 import { PersonaRepository } from 'src/nomencladores/repositories/persona.repository';
 import { AntecedenteRepository } from 'src/nomencladores/repositories/antecedente.repository';
+import { SintomaRepository } from 'src/nomencladores/repositories/sintoma.repository';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { AntecedenteRepository } from 'src/nomencladores/repositories/antecedent
       AreaSaludRepository,
       PersonaRepository,
       AntecedenteRepository,
+      SintomaRepository,
     ]),
   ],
   controllers: [

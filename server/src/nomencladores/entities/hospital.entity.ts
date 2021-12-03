@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { Municipio } from './municipio.entity';
 
-@Entity()
+@Entity({ schema: 'nomencladores'})
 export class Hospital extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

@@ -9,7 +9,7 @@ import {
 import { Expediente } from './expediente.entity';
 import { Hospital } from '../../nomencladores/entities/hospital.entity';
 
-@Entity()
+@Entity({ schema: 'datos'})
 export class Seguimiento extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

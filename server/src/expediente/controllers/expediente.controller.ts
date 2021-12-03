@@ -63,13 +63,16 @@ export class ExpedienteController {
     return this.expedienteService.addContacto(body);
   }
 
-  @Patch('contactos')
+  @Patch('contactos/:id')
   editContacto(@Body() body) {
     return this.expedienteService.editContacto(body);
   }
 
-  @Delete('contactos')
-  delContacto(@Query() query) {
-    return this.expedienteService.delContacto(query);
+  @Delete(':expediente_id/contactos/:id')
+  delContacto(
+    @Param('expediente_id') expediente_id: string,
+    @Param('id') id: string,
+  ) {
+    return this.expedienteService.delContacto(expediente_id, id);
   }
 }

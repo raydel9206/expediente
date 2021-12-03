@@ -10,6 +10,7 @@ import {
   UsePipes,
   ValidationPipe,
   Query,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ApiCreatedResponse } from '@nestjs/swagger';
 import { CreatePaisDto } from '../dto/create-pais.dto';
@@ -57,7 +58,7 @@ export class PaisController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseIntPipe) id: number) {
     return this.paisService.remove(+id);
   }
 }
