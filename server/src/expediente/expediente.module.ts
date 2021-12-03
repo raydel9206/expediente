@@ -22,6 +22,12 @@ import { AreaSaludRepository } from 'src/nomencladores/repositories/areaSalud.re
 import { PersonaRepository } from 'src/nomencladores/repositories/persona.repository';
 import { AntecedenteRepository } from 'src/nomencladores/repositories/antecedente.repository';
 import { SintomaRepository } from 'src/nomencladores/repositories/sintoma.repository';
+import { EstadoRepository } from 'src/nomencladores/repositories/estado.repository';
+import { FuenteInfeccionRepository } from 'src/nomencladores/repositories/fuenteinfeccion.repository';
+import { TipoCasoRepository } from 'src/nomencladores/repositories/tipocaso.repository';
+import { MetodoHallazgoRepository } from 'src/nomencladores/repositories/metodohallazgo.repository';
+import { FactorRiesgoRepository } from 'src/nomencladores/repositories/factorriesgo.repository';
+import { ImpresionDiagnosticaRepository } from 'src/nomencladores/repositories/impresiondiagnostica.repository';
 
 @Module({
   imports: [
@@ -37,6 +43,12 @@ import { SintomaRepository } from 'src/nomencladores/repositories/sintoma.reposi
       PersonaRepository,
       AntecedenteRepository,
       SintomaRepository,
+      EstadoRepository,
+      FuenteInfeccionRepository,
+      TipoCasoRepository,
+      MetodoHallazgoRepository,
+      FactorRiesgoRepository,
+      ImpresionDiagnosticaRepository,
     ]),
   ],
   controllers: [

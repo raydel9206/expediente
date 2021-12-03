@@ -1,8 +1,11 @@
 import { FactorRiesgo } from 'src/nomencladores/entities/factorriesgo.entity';
 import { FuenteInfeccion } from 'src/nomencladores/entities/fuenteinfeccion.entity';
+import { Habito } from 'src/nomencladores/entities/habito.entity';
+import { Estado } from 'src/nomencladores/entities/estado.entity';
 import { ImpresionDiagnostica } from 'src/nomencladores/entities/impresiondiagnostica.entity';
 import { MetodoHallazgo } from 'src/nomencladores/entities/metodohallazgo.entity';
 import { TipoCaso } from 'src/nomencladores/entities/tipocaso.entity';
+import { TratamientoBase } from 'src/nomencladores/entities/tratamientobase.entity';
 import {
   BaseEntity,
   Column,
@@ -44,8 +47,6 @@ export class Expediente extends BaseEntity {
   fecha_contacto: Date | null;
   @Column({ nullable: true })
   otros_sintomas: string | null;
-  @Column()
-  estado: number;
   @Column({ default: true })
   visible: boolean;
   @ManyToOne(() => Persona)
@@ -62,6 +63,17 @@ export class Expediente extends BaseEntity {
   @JoinTable()
   sintomas: Sintoma[];
 
+  @ManyToMany(() => TratamientoBase)
+  @JoinTable()
+  tratamientos_base: TratamientoBase[];
+
+  @ManyToMany(() => Habito)
+  @JoinTable()
+  habitos: Habito[];
+
+  @ManyToOne(() => Estado)
+  estado: Estado;
+
   @ManyToOne(() => FuenteInfeccion)
   fuente_infeccion: FuenteInfeccion;
 
@@ -75,7 +87,7 @@ export class Expediente extends BaseEntity {
   factor_riesgo: FactorRiesgo;
 
   @ManyToOne(() => ImpresionDiagnostica)
-  impresion_diagnostica: ImpresionDiagnostica;  
+  impresion_diagnostica: ImpresionDiagnostica;
 
   public addContacto(persona: Persona) {
     this.contactos.push(persona);

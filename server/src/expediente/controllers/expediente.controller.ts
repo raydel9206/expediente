@@ -33,6 +33,16 @@ export class ExpedienteController {
     return this.expedienteService.getSintomas(query.expediente_id);
   }
 
+  @Get('tratamientosbase')
+  getTratamientosBase(@Query() query) {
+    return this.expedienteService.getTratamientosBase(query.expediente_id);
+  }
+
+  @Get('habitos')
+  getHabitos(@Query() query) {
+    return this.expedienteService.getHabitos(query.expediente_id);
+  }
+
   @Post()
   @UsePipes(ValidationPipe)
   create(@Body() createExpedienteDto: CreateExpedienteDto) {

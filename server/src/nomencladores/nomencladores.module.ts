@@ -87,6 +87,9 @@ import { CentroAislamientoController } from './controllers/centroaislamiento.con
 import { TrabajoSaludRepository } from './repositories/trabajosalud.repository';
 import { TrabajoSaludService } from './services/trabajosalud.service';
 import { TrabajoSaludController } from './controllers/trabajosalud.controller';
+import { PersonalSaludRepository } from './repositories/personalsalud.repository';
+import { PersonalSaludService } from './services/personalsalud.service';
+import { PersonalSaludController } from './controllers/personalsalud.controller';
 
 
 @Module({
@@ -122,6 +125,7 @@ import { TrabajoSaludController } from './controllers/trabajosalud.controller';
       ImpresionDiagnosticaRepository,
       CentroAislamientoRepository,
       TrabajoSaludRepository,
+      PersonalSaludRepository,
     ]),
   ],
   controllers: [
@@ -154,6 +158,7 @@ import { TrabajoSaludController } from './controllers/trabajosalud.controller';
     ImpresionDiagnosticaController,
     CentroAislamientoController,
     TrabajoSaludController,
+    PersonalSaludController,
   ],
   providers: [
     PaisService,
@@ -185,6 +190,7 @@ import { TrabajoSaludController } from './controllers/trabajosalud.controller';
     ImpresionDiagnosticaService,
     CentroAislamientoService,
     TrabajoSaludService,
+    PersonalSaludService,
   ],
 })
 export class NomencladoresModule {}

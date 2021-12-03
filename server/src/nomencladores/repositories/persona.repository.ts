@@ -23,14 +23,14 @@ export class PersonaRepository extends Repository<Persona> {
       .select([
         'persona.id AS id',
         'persona.nombre AS nombre',
-        'areaSalud.id AS areaSalud_id',
-        'areaSalud.nombre AS areaSalud',
+        'cmf.id AS cmf_id',
+        'cmf.nombre AS cmf',
         'consejo.id AS consejo_id',
         'consejo.nombre AS consejo',
         'provincia.id AS provincia_id',
         'provincia.nombre AS provincia',
       ])
-      .leftJoin('persona.areaSalud', 'areaSalud')
+      .leftJoin('persona.cmf', 'cmf')
       .leftJoin('persona.consejo', 'consejo')
       .leftJoin('municipio.provincia', 'provincia')
       .orderBy('persona.nombre')

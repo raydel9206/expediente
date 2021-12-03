@@ -13,9 +13,9 @@ export class PoliclinicoService {
   ) {}
 
   async findAll(findPaginationDto: FindPaginationDto) {
-    console.log;
+    console.log('aaaa');
     const { combo, keyword, take, skip } = findPaginationDto;
-  
+
     if (combo !== undefined) {
       return this.policlinicoRepository.findCombo();
     } else {

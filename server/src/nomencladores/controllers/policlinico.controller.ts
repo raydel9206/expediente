@@ -22,6 +22,7 @@ export class PoliclinicoController {
 
   @Get()
   findAll(@Query() findPaginationDto: FindPaginationDto) {
+    console.log('bbb');
     return this.policlinicoService.findAll(findPaginationDto);
   }
 

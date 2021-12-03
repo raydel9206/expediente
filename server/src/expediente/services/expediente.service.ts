@@ -16,6 +16,12 @@ import { PersonaRepository } from '../../nomencladores/repositories/persona.repo
 import { Persona } from 'src/nomencladores/entities/persona.entity';
 import { ConsejoRepository } from 'src/nomencladores/repositories/consejo.repository';
 import { SintomaRepository } from 'src/nomencladores/repositories/sintoma.repository';
+import { EstadoRepository } from 'src/nomencladores/repositories/estado.repository';
+import { FuenteInfeccionRepository } from 'src/nomencladores/repositories/fuenteinfeccion.repository';
+import { TipoCasoRepository } from 'src/nomencladores/repositories/tipocaso.repository';
+import { MetodoHallazgoRepository } from 'src/nomencladores/repositories/metodohallazgo.repository';
+import { FactorRiesgoRepository } from 'src/nomencladores/repositories/factorriesgo.repository';
+import { ImpresionDiagnosticaRepository } from 'src/nomencladores/repositories/impresiondiagnostica.repository';
 
 @Injectable()
 export class ExpedienteService {
@@ -27,6 +33,12 @@ export class ExpedienteService {
     private antecedenteRepository: AntecedenteRepository,
     private consejoRepository: ConsejoRepository,
     private sintomaRepository: SintomaRepository,
+    private estadoRepository: EstadoRepository,
+    private fuenteInfeccionRepository: FuenteInfeccionRepository,
+    private tipoCasoRepository: TipoCasoRepository,
+    private metodoHallazgoRepository: MetodoHallazgoRepository,
+    private factorRiesgoRepository: FactorRiesgoRepository,
+    private impresionDiagnosticaRepository: ImpresionDiagnosticaRepository,
   ) {}
 
   async findAll(findPaginationDto: FindPaginationDto) {
@@ -66,6 +78,42 @@ export class ExpedienteService {
     };
   }
 
+  async getTratamientosBase(expediente_id: string) {
+    const id = parseInt(expediente_id);
+    const entity = await this.expedienteRepository.findOne({
+      where: {
+        id: id,
+        visible: true,
+      },
+      relations: ['tratamientos_base'],
+    });
+    if (!entity) {
+      throw new NotFoundException('El expediente no fué encontrado');
+    }
+
+    return {
+      rows: entity.tratamientos_base,
+    };
+  }
+
+  async getHabitos(expediente_id: string) {
+    const id = parseInt(expediente_id);
+    const entity = await this.expedienteRepository.findOne({
+      where: {
+        id: id,
+        visible: true,
+      },
+      relations: ['habitos'],
+    });
+    if (!entity) {
+      throw new NotFoundException('El expediente no fué encontrado');
+    }
+
+    return {
+      rows: entity.habitos,
+    };
+  }
+
   async create(createExpedienteDto: CreateExpedienteDto): Promise<Expediente> {
     const {
       persona_ci,
@@ -91,6 +139,12 @@ export class ExpedienteService {
       procede_id,
       cmf_id,
       consejo_id,
+      estado_id,
+      fuente_infeccion_id,
+      tipo_caso_id,
+      metodo_hallazgo_id,
+      factor_riesgo_id,
+      impresion_diagnostica_id,
       sintomas,
       antecedentes,
     } = createExpedienteDto;
@@ -116,6 +170,46 @@ export class ExpedienteService {
     if (!consejo) {
       throw new NotFoundException('El consejo no fué encontrado');
     }
+
+    const estado = await this.estadoRepository.findOne(estado_id);
+    if (!estado) {
+      throw new NotFoundException('El estado no fué encontrada=o');
+    }
+
+    const fuente_infeccion = await this.fuenteInfeccionRepository.findOne(
+      fuente_infeccion_id,
+    );
+    if (!fuente_infeccion) {
+      throw new NotFoundException('La fuente de infección no fué encontrada');
+    }
+
+    const tipo_caso = await this.tipoCasoRepository.findOne(tipo_caso_id);
+    if (!tipo_caso) {
+      throw new NotFoundException('El tipo de caso no fué encontrado');
+    }
+
+    const metodo_hallazgo = await this.metodoHallazgoRepository.findOne(
+      metodo_hallazgo_id,
+    );
+    if (!metodo_hallazgo) {
+      throw new NotFoundException('El método de hallazgo no fué encontrado');
+    }
+
+    const factor_riesgo = await this.factorRiesgoRepository.findOne(
+      factor_riesgo_id,
+    );
+    if (!factor_riesgo) {
+      throw new NotFoundException('El factor de riesgo no fué encontrado');
+    }
+
+    const impresion_diagnostica =
+      await this.impresionDiagnosticaRepository.findOne(
+        impresion_diagnostica_id,
+      );
+    if (!impresion_diagnostica) {
+      throw new NotFoundException('La impresión diagnóstica no fué encontrada');
+    }
+
     let persona = await this.personaRepository.findOne({
       ci: persona_ci,
       visible: true,
@@ -164,7 +258,12 @@ export class ExpedienteService {
     entity.fecha_contacto = fecha_contacto ? new Date(fecha_contacto) : null;
     entity.otros_sintomas = otros_sintomas;
     entity.procedente = procedente;
-    entity.estado = 1;
+    entity.estado = estado;
+    entity.fuente_infeccion = fuente_infeccion;
+    entity.tipo_caso = tipo_caso;
+    entity.metodo_hallazgo = metodo_hallazgo;
+    entity.factor_riesgo = factor_riesgo;
+    entity.impresion_diagnostica = impresion_diagnostica;
     entity.sintomas = [];
 
     if (sintomas)
@@ -260,6 +359,12 @@ export class ExpedienteService {
       procede_id,
       cmf_id,
       consejo_id,
+      estado_id,
+      fuente_infeccion_id,
+      tipo_caso_id,
+      metodo_hallazgo_id,
+      factor_riesgo_id,
+      impresion_diagnostica_id,
       sintomas,
       antecedentes,
     } = createExpedienteDto;
@@ -285,6 +390,45 @@ export class ExpedienteService {
     if (!consejo) {
       throw new NotFoundException('El consejo no fué encontrado');
     }
+    const estado = await this.estadoRepository.findOne(estado_id);
+    if (!estado) {
+      throw new NotFoundException('El estado no fué encontrada=o');
+    }
+
+    const fuente_infeccion = await this.fuenteInfeccionRepository.findOne(
+      fuente_infeccion_id,
+    );
+    if (!fuente_infeccion) {
+      throw new NotFoundException('La fuente de infección no fué encontrada');
+    }
+
+    const tipo_caso = await this.tipoCasoRepository.findOne(tipo_caso_id);
+    if (!tipo_caso) {
+      throw new NotFoundException('El tipo de caso no fué encontrado');
+    }
+
+    const metodo_hallazgo = await this.metodoHallazgoRepository.findOne(
+      metodo_hallazgo_id,
+    );
+    if (!metodo_hallazgo) {
+      throw new NotFoundException('El método de hallazgo no fué encontrado');
+    }
+
+    const factor_riesgo = await this.factorRiesgoRepository.findOne(
+      factor_riesgo_id,
+    );
+    if (!factor_riesgo) {
+      throw new NotFoundException('El factor de riesgo no fué encontrado');
+    }
+
+    const impresion_diagnostica =
+      await this.impresionDiagnosticaRepository.findOne(
+        impresion_diagnostica_id,
+      );
+    if (!impresion_diagnostica) {
+      throw new NotFoundException('La impresión diagnóstica no fué encontrada');
+    }
+
     let persona = await this.personaRepository.findOne({
       ci: persona_ci,
       visible: true,
@@ -303,6 +447,12 @@ export class ExpedienteService {
       persona.cmf = cmf;
       persona.consejo = consejo;
       persona.pais = pais;
+      entity.estado = estado;
+      entity.fuente_infeccion = fuente_infeccion;
+      entity.tipo_caso = tipo_caso;
+      entity.metodo_hallazgo = metodo_hallazgo;
+      entity.factor_riesgo = factor_riesgo;
+      entity.impresion_diagnostica = impresion_diagnostica;
       await persona.save();
     } else {
       persona.ci = persona_ci;

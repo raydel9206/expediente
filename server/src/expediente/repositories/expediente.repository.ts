@@ -41,6 +41,16 @@ export class ExpedienteRepository extends Repository<Expediente> {
         'municipio.nombre AS municipio',
         'provincia.id AS provincia_id',
         'provincia.nombre AS provincia',
+        'fuente_infeccion.id AS fuente_infeccion_id',
+        'fuente_infeccion.nombre AS fuente_infeccion',
+        'tipo_caso.id AS tipo_caso_id',
+        'tipo_caso.nombre AS tipo_caso',
+        'metodo_hallazgo.id AS metodo_hallazgo_id',
+        'metodo_hallazgo.nombre AS metodo_hallazgo',
+        'factor_riesgo.id AS factor_riesgo_id',
+        'factor_riesgo.nombre AS factor_riesgo',
+        'impresion_diagnostica.id AS impresion_diagnostica_id',
+        'impresion_diagnostica.nombre AS impresion_diagnostica',
       ])
       .leftJoin('expediente.persona', 'persona')
       .leftJoin('persona.cmf', 'cmf')
@@ -50,6 +60,11 @@ export class ExpedienteRepository extends Repository<Expediente> {
       .leftJoin('municipio.provincia', 'provincia')
       .leftJoin('persona.pais', 'pais')
       .leftJoin('expediente.procedente', 'procedente')
+      .leftJoin('expediente.fuente_infeccion', 'fuente_infeccion')
+      .leftJoin('expediente.tipo_caso', 'tipo_caso')
+      .leftJoin('expediente.metodo_hallazgo', 'metodo_hallazgo')
+      .leftJoin('expediente.factor_riesgo', 'factor_riesgo')
+      .leftJoin('expediente.impresion_diagnostica', 'impresion_diagnostica')
       .orderBy('expediente.fecha_registro')
       .where('expediente.visible = true')
       .andWhere(

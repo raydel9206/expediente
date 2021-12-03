@@ -38,6 +38,8 @@ export class CreateExpedienteDto {
   @IsNotEmpty()
   consejo_id: string;
   @IsNotEmpty()
+  estado_id: string;
+  @IsNotEmpty()
   fuente_infeccion_id: string;
   @IsNotEmpty()
   tipo_caso_id: string;
