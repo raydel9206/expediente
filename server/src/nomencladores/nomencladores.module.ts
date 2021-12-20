@@ -30,9 +30,6 @@ import { SintomaService } from './services/sintoma.service';
 import { AntecedenteRepository } from './repositories/antecedente.repository';
 import { AntecedenteService } from './services/antecedente.service';
 import { AntecedenteController } from './controllers/antecedente.controller';
-import { TratamientoBaseRepository } from './repositories/tratamientobase.repository';
-import { TratamientoBaseService } from './services/tratamientobase.service';
-import { TratamientoBaseController } from './controllers/tratamientobase.controller';
 import { EstadoRepository } from './repositories/estado.repository';
 import { EstadoService } from './services/estado.service';
 import { EstadoController } from './controllers/estado.controller';
@@ -72,6 +69,9 @@ import { FuenteInfeccionController } from './controllers/fuenteinfeccion.control
 import { TipoCasoRepository } from './repositories/tipocaso.repository';
 import { TipoCasoService } from './services/tipocaso.service';
 import { TipoCasoController } from './controllers/tipocaso.controller';
+import { TratamientoRepository } from './repositories/tratamiento.repository';
+import { TratamientoService } from './services/tratamiento.service';
+import { TratamientoController } from './controllers/tratamiento.controller';
 import { MetodoHallazgoRepository } from './repositories/metodohallazgo.repository';
 import { MetodoHallazgoService } from './services/metodohallazgo.service';
 import { MetodoHallazgoController } from './controllers/metodohallazgo.controller';
@@ -91,7 +91,6 @@ import { PersonalSaludRepository } from './repositories/personalsalud.repository
 import { PersonalSaludService } from './services/personalsalud.service';
 import { PersonalSaludController } from './controllers/personalsalud.controller';
 
-
 @Module({
   imports: [
     // forwardRef(() => ExpedienteModule),
@@ -106,7 +105,6 @@ import { PersonalSaludController } from './controllers/personalsalud.controller'
       PersonaRepository,
       SintomaRepository,
       AntecedenteRepository,
-      TratamientoBaseRepository,
       EstadoRepository,
       SalaRepository,
       HabitoRepository,
@@ -120,6 +118,7 @@ import { PersonalSaludController } from './controllers/personalsalud.controller'
       CausaFallecimientoRepository,
       FuenteInfeccionRepository,
       TipoCasoRepository,
+      TratamientoRepository,
       MetodoHallazgoRepository,
       FactorRiesgoRepository,
       ImpresionDiagnosticaRepository,
@@ -139,7 +138,6 @@ import { PersonalSaludController } from './controllers/personalsalud.controller'
     PersonaController,
     SintomaController,
     AntecedenteController,
-    TratamientoBaseController,
     EstadoController,
     SalaController,
     HabitoController,
@@ -153,6 +151,7 @@ import { PersonalSaludController } from './controllers/personalsalud.controller'
     CausaFallecimientoController,
     FuenteInfeccionController,
     TipoCasoController,
+    TratamientoController,
     MetodoHallazgoController,
     FactorRiesgoController,
     ImpresionDiagnosticaController,
@@ -171,7 +170,6 @@ import { PersonalSaludController } from './controllers/personalsalud.controller'
     PersonaService,
     SintomaService,
     AntecedenteService,
-    TratamientoBaseService,
     EstadoService,
     SalaService,
     HabitoService,
@@ -185,6 +183,7 @@ import { PersonalSaludController } from './controllers/personalsalud.controller'
     CausaFallecimientoService,
     FuenteInfeccionService,
     TipoCasoService,
+    TratamientoService,
     MetodoHallazgoService,
     FactorRiesgoService,
     ImpresionDiagnosticaService,

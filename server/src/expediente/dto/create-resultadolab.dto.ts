@@ -7,5 +7,5 @@ export class CreateResultadoLabDto {
   ionograma: string;
   otros: string;
   @IsNotEmpty()
-  seguimiento_id: string;
+  asistencia_id: string;
 }

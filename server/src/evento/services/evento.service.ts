@@ -94,7 +94,7 @@ export class EventoService {
       medida.responsable = iterator['responsable'];
       medida.tipo_accion = iterator['tipo_accion'];
       medida.observaciones = iterator['observaciones'];
-      medida.estado = iterator['estado'];
+      // medida.estado = iterator['estado'];
       medida.evento = entity;
       medida.save();
     }
@@ -171,7 +171,7 @@ export class EventoService {
       medida.responsable = iterator['responsable'];
       medida.tipo_accion = iterator['tipo_accion'];
       medida.observaciones = iterator['observaciones'];
-      medida.estado = iterator['estado'];
+      // medida.estado = iterator['estado'];
       medida.evento = entity;
       medida.save();
     }

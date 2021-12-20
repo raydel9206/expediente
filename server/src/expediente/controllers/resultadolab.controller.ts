@@ -20,7 +20,7 @@ export class ResultadoLabController {
 
   @Get()
   findAll(@Query() query) {
-    return this.resultadolabService.findAll(query.seguimiento_id);
+    return this.resultadolabService.findAll(query.asistencia_id);
   }
 
   @Post()

@@ -27,8 +27,8 @@ export class Medida extends BaseEntity {
   tipo_accion: number;
   @Column()
   observaciones: string;
-  @Column()
-  estado: number;
+  // @Column()
+  // estado: number;
   @Column({ default: true })
   visible: boolean;
   @ManyToOne(() => Evento)

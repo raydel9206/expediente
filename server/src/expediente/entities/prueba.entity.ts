@@ -8,19 +8,25 @@ import {
 import { Asistencia } from './asistencia.entity';
 
 @Entity({ schema: 'datos'})
-export class ResultadoLab extends BaseEntity {
+export class Prueba extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
   fecha: Date;
   @Column()
-  hemograma: string;
+  tipo_prueba: string;
   @Column()
-  gasometria: string;
+  tipo_muestra: string;
   @Column()
-  ionograma: string;
+  tecnico: string;
   @Column()
-  otros: string;
+  resultado: boolean;
+  @Column()
+  placa_base: string;
+  @Column()
+  orden: string;
+  @Column()
+  observaciones: string;
   @Column({ default: true })
   visible: boolean;
   @ManyToOne(() => Asistencia)

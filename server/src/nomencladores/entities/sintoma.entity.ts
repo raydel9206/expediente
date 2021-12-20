@@ -1,11 +1,13 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ schema: 'nomencladores'})
+@Entity({ schema: 'nomencladores' })
 export class Sintoma extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
-  descripcion: string;
+  nombre: string;
+  @Column({ nullable: true })
+  descripcion: string | null;
   @Column({ default: true })
   visible: boolean;
 }

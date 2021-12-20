@@ -1,13 +1,7 @@
 import {
   Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  UsePipes,
-  ValidationPipe,
+  Get,  
+  Param, 
   Query,
 } from '@nestjs/common';
 import { FindPaginationDto } from '../dto/find-pagination.dto';

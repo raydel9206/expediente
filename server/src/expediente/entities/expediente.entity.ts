@@ -5,7 +5,6 @@ import { Estado } from 'src/nomencladores/entities/estado.entity';
 import { ImpresionDiagnostica } from 'src/nomencladores/entities/impresiondiagnostica.entity';
 import { MetodoHallazgo } from 'src/nomencladores/entities/metodohallazgo.entity';
 import { TipoCaso } from 'src/nomencladores/entities/tipocaso.entity';
-import { TratamientoBase } from 'src/nomencladores/entities/tratamientobase.entity';
 import {
   BaseEntity,
   Column,
@@ -19,12 +18,16 @@ import { Pais } from '../../nomencladores/entities/pais.entity';
 
 import { Persona } from '../../nomencladores/entities/persona.entity';
 import { Sintoma } from '../../nomencladores/entities/sintoma.entity';
+import { Epidemia } from 'src/nomencladores/entities/epidemia.entity';
+import { Tratamiento } from 'src/nomencladores/entities/tratamiento.entity';
 @Entity({ schema: 'datos' })
 export class Expediente extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
   fecha_registro: Date;
+  @Column()
+  fecha_sospecha: Date;
   @Column()
   fecha_sintomas: Date;
   @Column({ default: false })
@@ -47,6 +50,30 @@ export class Expediente extends BaseEntity {
   fecha_contacto: Date | null;
   @Column({ nullable: true })
   otros_sintomas: string | null;
+  @Column({ nullable: true })
+  fecha_inicio_aislamiento: Date;
+  @Column({ nullable: true })
+  fecha_fin_aislamiento: Date;
+  @Column({ default: false })
+  fin_aislamiento: boolean;
+  @Column({ nullable: true })
+  fecha_inicio_vigilancia: Date;
+  @Column({ nullable: true })
+  fecha_fin_vigilancia: Date;
+  @Column({ default: false })
+  alta_epidemiologica: boolean;
+  @Column({ default: false })
+  asintomatico: boolean;
+  @Column({ default: false })
+  sint_post_confirm: boolean;
+  @Column()
+  consecutivo_nacional: string;
+  @Column()
+  numero_provincial: string;
+  @Column()
+  observaciones: string;
+  @Column()
+  trabajador_salud: string;
   @Column({ default: true })
   visible: boolean;
   @ManyToOne(() => Persona)
@@ -63,13 +90,16 @@ export class Expediente extends BaseEntity {
   @JoinTable()
   sintomas: Sintoma[];
 
-  @ManyToMany(() => TratamientoBase)
+  @ManyToMany(() => Tratamiento)
   @JoinTable()
-  tratamientos_base: TratamientoBase[];
+  tratamientos: Tratamiento[];
 
   @ManyToMany(() => Habito)
   @JoinTable()
   habitos: Habito[];
+
+  @ManyToOne(() => Epidemia)
+  epidemia: Epidemia;
 
   @ManyToOne(() => Estado)
   estado: Estado;

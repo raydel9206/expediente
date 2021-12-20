@@ -2,26 +2,26 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateResultadoLabDto } from '../dto/create-resultadolab.dto';
 import { ResultadoLab } from '../entities/resultadolab.entity';
 import { ResultadoLabRepository } from '../repositories/resultadolab.repository';
-import { SeguimientoRepository } from '../repositories/seguimiento.repository';
+import { AsistenciaRepository } from '../repositories/asistencia.repository';
 
 @Injectable()
 export class ResultadoLabService {
   constructor(
     private resultadoLabRepository: ResultadoLabRepository,
-    private seguimientoRepository: SeguimientoRepository,
+    private asistenciaRepository: AsistenciaRepository,
   ) {}
 
-  async findAll(seguimiento_id: string) {
-    return await this.resultadoLabRepository.findAll(seguimiento_id);
+  async findAll(asistencia_id: string) {
+    return await this.resultadoLabRepository.findAll(asistencia_id);
   }
 
   async create(
     createResultadoLabDto: CreateResultadoLabDto,
   ): Promise<ResultadoLab> {
-    const { fecha, hemograma, gasometria, ionograma, otros, seguimiento_id } =
+    const { fecha, hemograma, gasometria, ionograma, otros, asistencia_id } =
       createResultadoLabDto;
-    const seguimiento = await this.seguimientoRepository.findOne(
-      seguimiento_id,
+    const asistencia = await this.asistenciaRepository.findOne(
+      asistencia_id,
     );
     const entity = new ResultadoLab();
     entity.fecha = fecha;
@@ -29,14 +29,14 @@ export class ResultadoLabService {
     entity.gasometria = gasometria;
     entity.ionograma = ionograma;
     entity.otros = otros;
-    entity.seguimiento = seguimiento;
+    entity.asistencia = asistencia;
     await entity.save();
     return entity;
   }
 
   async findOne(id: number): Promise<ResultadoLab> {
     const entity = await this.resultadoLabRepository.findOne({
-      relations: ['seguimiento'],
+      relations: ['asistencia'],
       where: {
         id,
         visible: true,
@@ -55,17 +55,17 @@ export class ResultadoLabService {
     createResultadoLabDto: CreateResultadoLabDto,
   ): Promise<ResultadoLab> {
     const entity = await this.findOne(id);
-    const { fecha, hemograma, gasometria, ionograma, otros, seguimiento_id } =
+    const { fecha, hemograma, gasometria, ionograma, otros, asistencia_id } =
       createResultadoLabDto;
-    const seguimiento = await this.seguimientoRepository.findOne(
-      seguimiento_id,
+    const asistencia = await this.asistenciaRepository.findOne(
+      asistencia_id,
     );
     entity.fecha = fecha;
     entity.hemograma = hemograma;
     entity.gasometria = gasometria;
     entity.ionograma = ionograma;
     entity.otros = otros;
-    entity.seguimiento = seguimiento;
+    entity.asistencia = asistencia;
     await entity.save();
     return entity;
   }

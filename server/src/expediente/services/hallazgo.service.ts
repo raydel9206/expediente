@@ -13,7 +13,7 @@ export class HallazgoService {
 
   async findAll(): Promise<Hallazgo[]> {
     return await this.hallazgoRepository.find({
-      relations: ['seguimiento'],
+      relations: ['asistencia'],
       where: {
         visible: true,
       },
@@ -32,7 +32,7 @@ export class HallazgoService {
 
   async findOne(id: number): Promise<Hallazgo> {
     const entity = await this.hallazgoRepository.findOne({
-      relations: ['seguimiento'],
+      relations: ['asistencia'],
       where: {
         id,
         visible: true,

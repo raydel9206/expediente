@@ -7,7 +7,7 @@ export class Especialidad extends BaseEntity {
   @Column()
   nombre: string;
   @Column({ nullable: true })
-  descripcion: string;
+  descripcion: string|null;
   @Column({ default: true })
   visible: boolean;
 }

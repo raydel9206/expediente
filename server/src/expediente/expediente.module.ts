@@ -5,13 +5,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ExpedienteService } from './services/expediente.service';
 import { ExpedienteController } from './controllers/expediente.controller';
 import { ExpedienteRepository } from './repositories/expediente.repository';
-import { SeguimientoService } from './services/seguimiento.service';
-import { SeguimientoRepository } from './repositories/seguimiento.repository';
-import { SeguimientoController } from './controllers/seguimiento.controller';
-
-import { EstudioService } from './services/estudio.service';
-import { EstudioController } from './controllers/estudio.controller';
-import { EstudioRepository } from './repositories/estudio.repository';
+import { AsistenciaService } from './services/asistencia.service';
+import { AsistenciaRepository } from './repositories/asistencia.repository';
+import { AsistenciaController } from './controllers/asistencia.controller';
+import { TrasladoService } from './services/traslado.service';
+import { TrasladoRepository } from './repositories/traslado.repository';
+import { TrasladoController } from './controllers/traslado.controller';
+import { PruebaService } from './services/prueba.service';
+import { PruebaController } from './controllers/prueba.controller';
+import { PruebaRepository } from './repositories/prueba.repository';
 import { ResultadoLabRepository } from './repositories/resultadolab.repository';
 import { ResultadoLabController } from './controllers/resultadolab.controller';
 import { ResultadoLabService } from './services/resultadolab.service';
@@ -22,20 +24,24 @@ import { AreaSaludRepository } from 'src/nomencladores/repositories/areaSalud.re
 import { PersonaRepository } from 'src/nomencladores/repositories/persona.repository';
 import { AntecedenteRepository } from 'src/nomencladores/repositories/antecedente.repository';
 import { SintomaRepository } from 'src/nomencladores/repositories/sintoma.repository';
+import { EpidemiaRepository } from 'src/nomencladores/repositories/epidemia.repository';
 import { EstadoRepository } from 'src/nomencladores/repositories/estado.repository';
 import { FuenteInfeccionRepository } from 'src/nomencladores/repositories/fuenteinfeccion.repository';
 import { TipoCasoRepository } from 'src/nomencladores/repositories/tipocaso.repository';
 import { MetodoHallazgoRepository } from 'src/nomencladores/repositories/metodohallazgo.repository';
 import { FactorRiesgoRepository } from 'src/nomencladores/repositories/factorriesgo.repository';
 import { ImpresionDiagnosticaRepository } from 'src/nomencladores/repositories/impresiondiagnostica.repository';
+import { CausaFallecimientoRepository } from 'src/nomencladores/repositories/causafallecimiento.repository';
+import { HabitoRepository } from 'src/nomencladores/repositories/habito.repository';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
       ExpedienteRepository,
-      SeguimientoRepository,
+      AsistenciaRepository,
+      TrasladoRepository,
       ResultadoLabRepository,
-      EstudioRepository,
+      PruebaRepository,
       PaisRepository,
       ConsejoRepository,
       HospitalRepository,
@@ -43,25 +49,30 @@ import { ImpresionDiagnosticaRepository } from 'src/nomencladores/repositories/i
       PersonaRepository,
       AntecedenteRepository,
       SintomaRepository,
+      EpidemiaRepository,
       EstadoRepository,
       FuenteInfeccionRepository,
       TipoCasoRepository,
       MetodoHallazgoRepository,
       FactorRiesgoRepository,
       ImpresionDiagnosticaRepository,
+      CausaFallecimientoRepository,
+      HabitoRepository,
     ]),
   ],
   controllers: [
     ExpedienteController,
-    SeguimientoController,
+    AsistenciaController,
+    TrasladoController,
     ResultadoLabController,
-    EstudioController,
+    PruebaController,
   ],
   providers: [
     ExpedienteService,
-    SeguimientoService,
+    AsistenciaService,
+    TrasladoService,
     ResultadoLabService,
-    EstudioService,
+    PruebaService,
   ],
 })
 export class ExpedienteModule {}

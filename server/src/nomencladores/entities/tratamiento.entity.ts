@@ -1,7 +1,7 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ schema: 'nomencladores' })
-export class TipoCaso extends BaseEntity {
+export class Tratamiento extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()

@@ -25,7 +25,7 @@ export class ExpedienteController {
 
   @Get('contactos')
   getContactos(@Query() query) {
-    return this.expedienteService.getContactos(query.expediente_id);
+    return this.expedienteService.getContactos(query);
   }
 
   @Get('sintomas')
@@ -33,9 +33,9 @@ export class ExpedienteController {
     return this.expedienteService.getSintomas(query.expediente_id);
   }
 
-  @Get('tratamientosbase')
-  getTratamientosBase(@Query() query) {
-    return this.expedienteService.getTratamientosBase(query.expediente_id);
+  @Get('tratamientos')
+  getTratamientos(@Query() query) {
+    return this.expedienteService.getTratamientos(query.expediente_id);
   }
 
   @Get('habitos')

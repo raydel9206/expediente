@@ -6,6 +6,7 @@ export class ExpedienteRepository extends Repository<Expediente> {
     const query = this.createQueryBuilder('expediente')
       .select([
         'expediente.id AS id',
+        'expediente.fecha_sospecha as fecha_sospecha',
         'expediente.fecha_sintomas as fecha_sintomas',
         'expediente.arribado as arribado',
         'expediente.fecha_arribo as fecha_arribo',
@@ -17,15 +18,30 @@ export class ExpedienteRepository extends Repository<Expediente> {
         'expediente.tipo_contacto as tipo_contacto',
         'expediente.fecha_contacto as fecha_contacto',
         'expediente.otros_sintomas as otros_sintomas',
+        'expediente.fecha_inicio_aislamiento as fecha_inicio_aislamiento',
+        'expediente.fecha_fin_aislamiento as fecha_fin_aislamiento',
+        'expediente.fin_aislamiento as fin_aislamiento',
+        'expediente.fecha_inicio_vigilancia as fecha_inicio_vigilancia',
+        'expediente.fecha_fin_vigilancia as fecha_fin_vigilancia',
+        'expediente.alta_epidemiologica as alta_epidemiologica',
+        'expediente.asintomatico as asintomatico',
+        'expediente.sint_post_confirm as sint_post_confirm',
+        'expediente.consecutivo_nacional as consecutivo_nacional',
+        'expediente.numero_provincial as numero_provincial',
+        'expediente.observaciones as observaciones',
+        'expediente.trabajador_salud as trabajador_salud',
         'persona.id AS persona_id',
         'persona.ci AS persona_ci',
         'persona.nombre AS persona_nombre',
         'persona.apellidos AS persona_apellidos',
         'persona.edad AS persona_edad',
         'persona.sexo AS persona_sexo',
+        'persona.color_piel AS persona_piel',
         'persona.direccion AS persona_direccion',
         'persona.ocupacion AS persona_ocupacion',
         'persona.centro AS persona_centro',
+        'persona.telefono_centro AS telefono_centro',
+        'persona.direccion_centro AS direccion_centro',
         'cmf.id AS cmf_id',
         'cmf.nombre AS cmf',
         'pais.id AS pais_id',
@@ -41,6 +57,10 @@ export class ExpedienteRepository extends Repository<Expediente> {
         'municipio.nombre AS municipio',
         'provincia.id AS provincia_id',
         'provincia.nombre AS provincia',
+        'epidemia.id AS epidemia_id',
+        'epidemia.nombre AS epidemia',
+        'estado.id AS estado_id',
+        'estado.nombre AS estado',
         'fuente_infeccion.id AS fuente_infeccion_id',
         'fuente_infeccion.nombre AS fuente_infeccion',
         'tipo_caso.id AS tipo_caso_id',
@@ -60,6 +80,8 @@ export class ExpedienteRepository extends Repository<Expediente> {
       .leftJoin('municipio.provincia', 'provincia')
       .leftJoin('persona.pais', 'pais')
       .leftJoin('expediente.procedente', 'procedente')
+      .leftJoin('expediente.epidemia', 'epidemia')
+      .leftJoin('expediente.estado', 'estado')
       .leftJoin('expediente.fuente_infeccion', 'fuente_infeccion')
       .leftJoin('expediente.tipo_caso', 'tipo_caso')
       .leftJoin('expediente.metodo_hallazgo', 'metodo_hallazgo')
@@ -78,11 +100,11 @@ export class ExpedienteRepository extends Repository<Expediente> {
     };
   }
 
-  async findContactos(
+  async getContactos(
     skip: number,
     take: number,
-    expediente_id: number,
     filter = '',
+    expediente_id: number,
   ) {
     // const entityManager = getManager();
     // const rawData = await entityManager.query(`SELECT * FROM persona p
@@ -103,16 +125,16 @@ export class ExpedienteRepository extends Repository<Expediente> {
       // .leftJoin('persona.pais', 'pais')
       // .leftJoin('expediente.procedente', 'procedente')
       // .orderBy('expediente.fecha_registro')
-      .where('expediente.id = true');
-    // .andWhere(
-    //   'persona.nombre like :filter or persona.apellidos like :filter or persona.ci like :filter',
-    //   { filter: `%${filter}%` },
-    // );
+      .where('expediente.id :expediente_id', { expediente_id: expediente_id })
+      .andWhere(
+        'persona.nombre like :filter or persona.apellidos like :filter or persona.ci like :filter',
+        { filter: `%${filter}%` },
+      );
 
     // console.log(query.getSql());
     return {
-      // rows: await query.offset(skip).limit(take).getRawMany(),
-      rows: await query.getRawMany(),
+      rows: await query.offset(skip).limit(take).getRawMany(),
+      // rows: await query.getRawMany(),
       count: await query.getCount(),
     };
   }

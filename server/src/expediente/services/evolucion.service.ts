@@ -13,7 +13,7 @@ export class EvolucionService {
 
   async findAll(): Promise<Evolucion[]> {
     return await this.evolucionRepository.find({
-      relations: ['seguimiento'],
+      relations: ['asistencia'],
       where: {
         visible: true,
       },
@@ -32,7 +32,7 @@ export class EvolucionService {
 
   async findOne(id: number): Promise<Evolucion> {
     const entity = await this.evolucionRepository.findOne({
-      relations: ['seguimiento'],
+      relations: ['asistencia'],
       where: {
         id,
         visible: true,

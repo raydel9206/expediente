@@ -13,7 +13,7 @@ import { AreaSalud } from './areaSalud.entity';
 import { Consejo } from './consejo.entity';
 
 import { Pais } from './pais.entity';
-@Entity({ schema: 'nomencladores'})
+@Entity({ schema: 'nomencladores' })
 export class Persona extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -37,6 +37,10 @@ export class Persona extends BaseEntity {
   ocupacion: string | null;
   @Column({ nullable: true })
   centro: string | null;
+  @Column({ nullable: true })
+  direccion_centro: string | null;
+  @Column({ nullable: true })
+  telefono_centro: string | null;
   @Column({ default: true })
   visible: boolean;
   @ManyToOne(() => AreaSalud)
